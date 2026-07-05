@@ -5,16 +5,28 @@
 
 const products = []
 
-fetch("https://api.escuelajs.co/api/v1/products")
+fetch("https://dummyjson.com/products")
     .then(response => response.json())
-    .then(data => products.push(...data))
+    .then(data => products.push(...data.products))
     .catch(error => console.error('Error:', error));
 
 console.log(products)
 
 let container = document.querySelector("#main")
 
+function showLoader() {
+    let loader = document.querySelector(".loader")
+    loader.style.display = "block"
+}
+function hideLoader() {
+    let loader = document.querySelector(".loader")
+    loader.style.display = "none"
+}
+
+showLoader()
+
 setTimeout(() => {
+    hideLoader()
     for (let i = 0; i < products.length; i++) {
         console.log(products[i])
         let product = products[i]
